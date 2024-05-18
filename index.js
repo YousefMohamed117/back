@@ -1,20 +1,19 @@
-var host = process.env.HOST || '0.0.0.0';
+var host = process.env.HOST || "0.0.0.0";
 var port = process.env.PORT || 8080;
 
-var cors_proxy = require('cors-anywhere');
-cors_proxy.createServer({
+var cors_proxy = require("cors-anywhere");
+cors_proxy
+  .createServer({
     originWhitelist: [], // Allow all origins
-    requireHeader: ['origin', 'x-requested-with'],
-    removeHeaders: ['cookie', 'cookie2'],
+    requireHeader: ["origin", "x-requested-with"],
+    removeHeaders: ["cookie", "cookie2"],
     setHeaders: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With'
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET,POST,PUT,DELETE,OPTIONS",
+      "Access-Control-Allow-Headers":
+        "Content-Type, Authorization, X-Requested-With",
     },
-    checkRateLimit: function (origin, callback) {
-        console.log('Request from origin:', origin);
-        callback(null); // No rate limit
-    }
-}).listen(port, host, function() {
-    console.log('Running CORS Anywhere on ' + host + ':' + port);
-});
+  })
+  .listen(port, host, function () {
+    console.log("Running CORS Anywhere on " + host + ":" + port);
+  });
